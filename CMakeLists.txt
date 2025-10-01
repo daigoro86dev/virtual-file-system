@@ -13,6 +13,7 @@ set(SOURCES
     src/Directory.cpp
     src/FileSystem.cpp
     src/CLI.cpp
+    src/Utils.cpp
     src/main.cpp
 )
 

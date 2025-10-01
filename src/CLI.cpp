@@ -1,4 +1,5 @@
 #include "CLI.hpp"
+#include "Utils.hpp"
 #include <iostream>
 #include <sstream>
 #include <readline/readline.h>
@@ -24,6 +25,10 @@ void CLI::run()
             break; // Ctrl+D exits
 
         std::string cmdline(input);
+        cmdline = Utils::trim(cmdline);
+        if (cmdline.empty())
+            continue;
+
         free(input);
 
         if (cmdline == "exit")
