@@ -13,6 +13,7 @@ public:
     void ls() const;
     void cd(const std::string &name);
     void pwd() const;
+    std::shared_ptr<Directory> getCurrent() const { return current; }
 
 private:
     std::shared_ptr<Directory> root;

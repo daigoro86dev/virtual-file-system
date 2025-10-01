@@ -16,6 +16,8 @@ public:
     std::shared_ptr<File> getFile(const std::string &name);
     void list() const;
     Directory *getParent() const;
+    const std::map<std::string, std::shared_ptr<File>> &getFiles() const { return files; }
+    const std::map<std::string, std::shared_ptr<Directory>> &getSubDirs() const { return subdirectories; }
 
 private:
     std::string name;
