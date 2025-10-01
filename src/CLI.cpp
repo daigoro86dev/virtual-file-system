@@ -64,6 +64,11 @@ void CLI::handleCommand(const std::string &input)
     {
         fs.pwd();
     }
+    else if (cmd == "tree")
+    {
+        fs.tree();
+    }
+
     else
     {
         std::cout << "Unknown command: " << cmd << std::endl;

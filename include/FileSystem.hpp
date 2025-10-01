@@ -14,6 +14,7 @@ public:
     void cd(const std::string &name);
     void pwd() const;
     std::shared_ptr<Directory> getCurrent() const { return current; }
+    void tree() const;
 
 private:
     std::shared_ptr<Directory> root;

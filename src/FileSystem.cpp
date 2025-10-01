@@ -60,3 +60,8 @@ void FileSystem::pwd() const
     }
     std::cout << std::endl;
 }
+
+void FileSystem::tree() const
+{
+    root->printTree();
+}

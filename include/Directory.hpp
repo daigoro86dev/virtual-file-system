@@ -18,6 +18,7 @@ public:
     Directory *getParent() const;
     const std::map<std::string, std::shared_ptr<File>> &getFiles() const { return files; }
     const std::map<std::string, std::shared_ptr<Directory>> &getSubDirs() const { return subdirectories; }
+    void printTree(const std::string &prefix = "", bool isLast = true) const;
 
 private:
     std::string name;

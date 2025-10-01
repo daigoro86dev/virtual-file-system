@@ -61,3 +61,35 @@ Directory *Directory::getParent() const
 {
     return parent;
 }
+
+void Directory::printTree(const std::string &prefix, bool isLast) const
+{
+    std::cout << prefix;
+    if (!prefix.empty())
+    {
+        std::cout << (isLast ? "└── " : "├── ");
+    }
+    std::cout << name << "/" << std::endl;
+
+    // Children (subdirs + files)
+    auto totalChildren = subdirectories.size() + files.size();
+    size_t counter = 0;
+
+    // Print directories first
+    for (const auto &[dname, dptr] : subdirectories)
+    {
+        counter++;
+        bool lastChild = (counter == totalChildren);
+        dptr->printTree(prefix + (isLast ? "    " : "│   "), lastChild);
+    }
+
+    // Print files
+    for (const auto &[fname, fptr] : files)
+    {
+        counter++;
+        bool lastChild = (counter == totalChildren);
+        std::cout << prefix << (isLast ? "    " : "│   ")
+                  << (lastChild ? "└── " : "├── ")
+                  << fname << std::endl;
+    }
+}
