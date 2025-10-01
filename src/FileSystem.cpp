@@ -1,0 +1,62 @@
+#include "FileSystem.hpp"
+#include <iostream>
+#include <vector>
+
+FileSystem::FileSystem()
+{
+    root = std::make_shared<Directory>("root", nullptr);
+    current = root;
+}
+
+void FileSystem::mkdir(const std::string &name)
+{
+    current->addDirectory(name);
+}
+
+void FileSystem::touch(const std::string &name)
+{
+    current->addFile(name);
+}
+
+void FileSystem::ls() const
+{
+    current->list();
+}
+
+void FileSystem::cd(const std::string &name)
+{
+    if (name == "..")
+    {
+        if (current->getParent() != nullptr)
+        {
+            current = std::shared_ptr<Directory>(current->getParent(), [](Directory *) {});
+        }
+        return;
+    }
+    auto subdir = current->getSubDirectory(name);
+    if (subdir)
+    {
+        current = subdir;
+    }
+    else
+    {
+        std::cout << "Directory not found: " << name << std::endl;
+    }
+}
+
+void FileSystem::pwd() const
+{
+    // Build path from current to root
+    std::vector<std::string> path;
+    Directory *node = current.get();
+    while (node != nullptr)
+    {
+        path.push_back(node->getName());
+        node = node->getParent();
+    }
+    for (auto it = path.rbegin(); it != path.rend(); ++it)
+    {
+        std::cout << "/" << *it;
+    }
+    std::cout << std::endl;
+}
