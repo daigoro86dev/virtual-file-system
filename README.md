@@ -126,4 +126,4 @@ Run with:
 
 ## 📜 License
 
-[LICENSE](./LICENSE)
+[MIT](./LICENSE)
