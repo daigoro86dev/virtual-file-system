@@ -126,4 +126,4 @@ Run with:
 
 ## 📜 License
 
-[MIT](./LICENSE)
+[MIT](./LICENSE) © 2025 Bruno Maio
