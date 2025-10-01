@@ -65,3 +65,16 @@ void FileSystem::tree() const
 {
     root->printTree();
 }
+
+void FileSystem::cat(const std::string &name) const
+{
+    auto file = current->getFile(name);
+    if (file)
+    {
+        std::cout << file->getContent() << std::endl;
+    }
+    else
+    {
+        std::cout << "File not found: " << name << std::endl;
+    }
+}

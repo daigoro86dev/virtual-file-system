@@ -68,7 +68,10 @@ void CLI::handleCommand(const std::string &input)
     {
         fs.tree();
     }
-
+    else if (cmd == "cat")
+    {
+        fs.cat(arg);
+    }
     else
     {
         std::cout << "Unknown command: " << cmd << std::endl;
@@ -78,7 +81,7 @@ void CLI::handleCommand(const std::string &input)
 // --- Completion helpers ---
 
 // Command list
-static const char *commands[] = {"mkdir", "touch", "ls", "cd", "pwd", "exit", nullptr};
+static const char *commands[] = {"mkdir", "touch", "ls", "cd", "pwd", "exit", "tree", "cat", nullptr};
 
 // Generator for command matches
 char *commandGenerator(const char *text, int state)

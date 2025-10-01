@@ -15,6 +15,7 @@ public:
     void pwd() const;
     std::shared_ptr<Directory> getCurrent() const { return current; }
     void tree() const;
+    void cat(const std::string &name) const;
 
 private:
     std::shared_ptr<Directory> root;
