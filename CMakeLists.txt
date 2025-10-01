@@ -17,3 +17,5 @@ set(SOURCES
 )
 
 add_executable(VirtualFileSystem ${SOURCES})
+
+target_link_libraries(VirtualFileSystem PRIVATE readline)
