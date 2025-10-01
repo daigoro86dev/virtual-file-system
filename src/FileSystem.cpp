@@ -89,3 +89,42 @@ void FileSystem::write(const std::string &name, const std::string &content)
     }
     file->write(content);
 }
+
+void FileSystem::cp(const std::string &source, const std::string &destination)
+{
+    auto srcFile = current->getFile(source);
+    if (!srcFile)
+    {
+        std::cout << "File not found: " << source << std::endl;
+        return;
+    }
+
+    // Create a new file with destination name and copy content
+    current->addFile(destination);
+    auto destFile = current->getFile(destination);
+    if (destFile)
+    {
+        destFile->write(srcFile->getContent());
+    }
+}
+
+void FileSystem::mv(const std::string &source, const std::string &destination)
+{
+    auto srcFile = current->getFile(source);
+    if (!srcFile)
+    {
+        std::cout << "File not found: " << source << std::endl;
+        return;
+    }
+
+    // Copy content to new file, then delete old one
+    current->addFile(destination);
+    auto destFile = current->getFile(destination);
+    if (destFile)
+    {
+        destFile->write(srcFile->getContent());
+    }
+
+    // Erase the old file
+    current->removeFile(source);
+}

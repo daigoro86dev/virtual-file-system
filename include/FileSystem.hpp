@@ -17,6 +17,8 @@ public:
     void tree() const;
     void cat(const std::string &name) const;
     void write(const std::string &name, const std::string &content);
+    void cp(const std::string &source, const std::string &destination);
+    void mv(const std::string &source, const std::string &destination);
 
 private:
     std::shared_ptr<Directory> root;

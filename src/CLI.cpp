@@ -88,6 +88,18 @@ void CLI::handleCommand(const std::string &input)
 
         fs.write(filename, content);
     }
+    else if (cmd == "cp")
+    {
+        std::string src, dest;
+        iss >> src >> dest;
+        fs.cp(src, dest);
+    }
+    else if (cmd == "mv")
+    {
+        std::string src, dest;
+        iss >> src >> dest;
+        fs.mv(src, dest);
+    }
     else
     {
         std::cout << "Unknown command: " << cmd << std::endl;
@@ -97,7 +109,7 @@ void CLI::handleCommand(const std::string &input)
 // --- Completion helpers ---
 
 // Command list
-static const char *commands[] = {"mkdir", "touch", "ls", "cd", "pwd", "exit", "tree", "cat", "write", nullptr};
+static const char *commands[] = {"mkdir", "touch", "ls", "cd", "pwd", "exit", "tree", "cat", "write", "cp", "mv", nullptr};
 
 // Generator for command matches
 char *commandGenerator(const char *text, int state)

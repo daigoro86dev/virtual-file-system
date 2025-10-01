@@ -93,3 +93,12 @@ void Directory::printTree(const std::string &prefix, bool isLast) const
                   << fname << std::endl;
     }
 }
+
+void Directory::removeFile(const std::string &name)
+{
+    auto it = files.find(name);
+    if (it != files.end())
+    {
+        files.erase(it);
+    }
+}
