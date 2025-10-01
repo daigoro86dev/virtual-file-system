@@ -40,16 +40,19 @@ void CLI::run()
 void CLI::handleCommand(const std::string &input)
 {
     std::istringstream iss(input);
-    std::string cmd, arg;
+    std::string cmd;
     iss >> cmd;
-    iss >> arg;
 
     if (cmd == "mkdir")
     {
+        std::string arg;
+        iss >> arg;
         fs.mkdir(arg);
     }
     else if (cmd == "touch")
     {
+        std::string arg;
+        iss >> arg;
         fs.touch(arg);
     }
     else if (cmd == "ls")
@@ -58,19 +61,32 @@ void CLI::handleCommand(const std::string &input)
     }
     else if (cmd == "cd")
     {
+        std::string arg;
+        iss >> arg;
         fs.cd(arg);
     }
     else if (cmd == "pwd")
     {
         fs.pwd();
     }
-    else if (cmd == "tree")
-    {
-        fs.tree();
-    }
     else if (cmd == "cat")
     {
+        std::string arg;
+        iss >> arg;
         fs.cat(arg);
+    }
+    else if (cmd == "write")
+    {
+        std::string filename;
+        iss >> filename;
+        std::string content;
+        std::getline(iss, content);
+
+        // Strip leading space from getline
+        if (!content.empty() && content[0] == ' ')
+            content.erase(0, 1);
+
+        fs.write(filename, content);
     }
     else
     {
@@ -81,7 +97,7 @@ void CLI::handleCommand(const std::string &input)
 // --- Completion helpers ---
 
 // Command list
-static const char *commands[] = {"mkdir", "touch", "ls", "cd", "pwd", "exit", "tree", "cat", nullptr};
+static const char *commands[] = {"mkdir", "touch", "ls", "cd", "pwd", "exit", "tree", "cat", "write", nullptr};
 
 // Generator for command matches
 char *commandGenerator(const char *text, int state)

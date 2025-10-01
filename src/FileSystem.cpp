@@ -78,3 +78,14 @@ void FileSystem::cat(const std::string &name) const
         std::cout << "File not found: " << name << std::endl;
     }
 }
+
+void FileSystem::write(const std::string &name, const std::string &content)
+{
+    auto file = current->getFile(name);
+    if (!file)
+    {
+        std::cout << "File not found: " << name << std::endl;
+        return;
+    }
+    file->write(content);
+}

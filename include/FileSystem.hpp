@@ -16,6 +16,7 @@ public:
     std::shared_ptr<Directory> getCurrent() const { return current; }
     void tree() const;
     void cat(const std::string &name) const;
+    void write(const std::string &name, const std::string &content);
 
 private:
     std::shared_ptr<Directory> root;
